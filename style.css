@@ -3,6 +3,7 @@ body {
   background: #0f172a;
   color: white;
   text-align: center;
+  padding: 20px;
 }
 
 input, button {
@@ -18,6 +19,142 @@ button {
   cursor: pointer;
 }
 
-#log {
+#dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-top: 20px;
+  gap: 20px;
+}
+
+#userInfo {
+  flex: 1 1 300px;
+  text-align: center;
+}
+
+#usersList {
+  flex: 1 1 200px;
+  background: #1e293b;
+  padding: 10px;
+  border-radius: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#usersList ul {
+  list-style: none;
+  padding: 0;
+}
+
+#usersList li {
+  cursor: pointer;
+  padding: 5px;
+  border-bottom: 1px solid #334155;
+}
+
+#usersList li:hover {
+  background: #334155;
+}
+
+#chatPanel {
+  flex: 2 1 400px;
+  background: #1e293b;
+  padding: 10px;
+  border-radius: 8px;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+#chatBox {
+  flex: 1;
+  overflow-y: auto;
+  padding: 5px;
+  border: 1px solid #334155;
+  margin-bottom: 5px;
+}
+
+/* Animations */
+
+.gift-animation {
+  position: absolute;
+  font-size: 2.5rem;
+  animation: floatGift 2s ease-out forwards;
+  z-index: 1000;
+}
+
+@keyframes floatGift {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  50% { transform: translateY(-60px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(-180px) scale(0.8); opacity: 0; }
+}
+
+.rainbow {
+  position: absolute;
+  font-size: 2.5rem;
+  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: rainbowFloat 2s ease-out forwards;
+  z-index: 1000;
+}
+
+@keyframes rainbowFloat {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  50% { transform: translateY(-60px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(-180px) scale(0.8); opacity: 0; }
+}
+
+.diamond {
+  position: absolute;
+  font-size: 1.5rem;
+  color: gold;
+  animation: diamondFloat 1.5s ease-out forwards;
+  z-index: 1000;
+}
+
+@keyframes diamondFloat {
+  0% { transform: translateY(0) scale(0.5); opacity: 1; }
+  50% { transform: translateY(-40px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(-120px) scale(0.8); opacity: 0; }
+}
+
+.avatar-sparkle {
+  position: relative;
+  animation: avatarSparkle 1s ease-out forwards;
+}
+
+@keyframes avatarSparkle {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5) rotate(180deg); opacity: 1; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+.floating-name {
+  position: absolute;
+  font-weight: bold;
+  color: #facc15;
+  text-shadow: 1px 1px 5px black;
+  animation: floatName 2s ease-out forwards;
+  z-index: 1001;
+}
+
+@keyframes floatName {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-40px); opacity: 1; }
+  100% { transform: translateY(-120px); opacity: 0; }
+}
+
+.particle {
+  position: absolute;
+  font-size: 1rem;
+  color: #f87171;
+  animation: particleFloat 1s linear forwards;
+  z-index: 1002;
+}
+
+@keyframes particleFloat {
+  0% { transform: translate(0,0) scale(0.5); opacity:1; }
+  50% { transform: translate(20px,-30px) scale(1); opacity:1; }
+  100% { transform: translate(40px,-80px) scale(0); opacity:0; }
 }
