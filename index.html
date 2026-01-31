@@ -1,23 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Quantum Talk</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quantum Talk Ultra-Pro 🎙️</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Quantum Talk 🎙️</h2>
+<h2>Quantum Talk Ultra-Pro 🎙️</h2>
 
-<input id="room" placeholder="Enter Room Code">
-<button onclick="joinRoom()">Join Room</button>
+<div id="login">
+  <input id="username" placeholder="Enter your username">
+  <input id="avatar" placeholder="Choose avatar (emoji)">
+  <input id="room" placeholder="Enter Room Code">
+  <input id="roomPass" placeholder="Room Password (optional)">
+  <button onclick="joinRoom()">Join Room</button>
+</div>
 
 <div id="controls" style="display:none;">
-  <button onclick="mute()">Mute</button>
-  <button onclick="leave()">Leave</button>
+  <h3>Room: <span id="roomNameDisplay"></span></h3>
+
+  <div id="dashboard">
+    <div id="userInfo">
+      Welcome, <span id="userDisplay"></span> <span id="userAvatar"></span> | 💎 <span id="userDiamonds"></span>
+      <button onclick="toggleMute()">Mute/Unmute 🎙️</button>
+      <button onclick="leaveRoom()">Leave Room ❌</button>
+    </div>
+
+    <div id="usersList">
+      <h4>Users in Room</h4>
+      <ul id="usersUL"></ul>
+    </div>
+
+    <div id="chatPanel">
+      <h4>Chat 💬</h4>
+      <div id="chatBox"></div>
+      <input id="chatInput" placeholder="Type message">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
 
   <h3>Send Gift 🎁</h3>
-  <button onclick="sendGift('🌹')">Rose (10💎)</button>
-  <button onclick="sendGift('👑')">Crown (100💎)</button>
+  <button onclick="sendGift('🌹',10)">Rose (10💎)</button>
+  <button onclick="sendGift('👑',100)">Crown (100💎)</button>
 </div>
 
 <div id="log"></div>
@@ -26,3 +52,4 @@
 <script src="app.js"></script>
 </body>
 </html>
+
