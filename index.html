@@ -1,42 +1,194 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Quantum Talk</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Quantum Talk Ultra</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Segoe UI,Arial;
+  background:linear-gradient(135deg,#020617,#0f172a,#020617);
+  color:#fff;
+}
+.hidden{display:none}
+button{
+  background:linear-gradient(135deg,#2563eb,#9333ea);
+  border:none;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+}
+input{
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  width:100%;
+  margin-bottom:10px;
+}
+.card{
+  background:#020617cc;
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 0 20px #000;
+}
+.center{
+  max-width:420px;
+  margin:40px auto;
+}
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px;
+  background:#020617;
+}
+.avatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#1e293b;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+}
+.main{
+  display:grid;
+  grid-template-columns:260px 1fr 260px;
+  gap:10px;
+  padding:10px;
+}
+.panel{
+  background:#020617cc;
+  border-radius:16px;
+  padding:10px;
+  height:calc(100vh - 80px);
+  overflow:auto;
+}
+.user{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:6px;
+  border-radius:10px;
+  background:#1e293b;
+  margin-bottom:6px;
+  cursor:pointer;
+}
+.chat{
+  height:calc(100% - 90px);
+  overflow:auto;
+  padding:10px;
+}
+.msg{
+  margin-bottom:8px;
+}
+.msg.me{color:#38bdf8}
+.chat-input{
+  display:flex;
+  gap:6px;
+}
+.gift{
+  font-size:24px;
+  cursor:pointer;
+  margin:4px;
+}
+.badge{
+  background:#16a34a;
+  padding:2px 8px;
+  border-radius:20px;
+  font-size:12px;
+}
+</style>
 </head>
+
 <body>
 
-<h2>💎 Quantum Talk</h2>
+<!-- LOGIN -->
+<div id="login" class="center card">
+  <h2>💎 Quantum Talk Ultra</h2>
 
-<div id="login">
   <input id="username" placeholder="Username">
-  <input id="avatar" placeholder="Avatar (🙂👑🔥)">
-  <input id="room" placeholder="Room Code">
+  <input id="avatar" placeholder="Emoji Avatar 😎">
+  <input id="room" placeholder="Room ID">
   <input id="roomPass" placeholder="Room Password (optional)">
-  <button onclick="joinRoom()">Create / Join Room</button>
+  
+  <label style="font-size:13px">Upload Avatar Image</label>
+  <input type="file" id="avatarFile" accept="image/*">
+
+  <button id="joinBtn" style="width:100%">Create / Join Room</button>
+
+  <p style="font-size:12px;opacity:.6;margin-top:10px">
+    Private • Secure • No Ads • No Payment
+  </p>
 </div>
 
-<div id="app" style="display:none;">
-  <div class="top">
-    <span id="userAvatar"></span>
-    <b id="userDisplay"></b>
-    💎 <span id="userDiamonds"></span>
-    <button onclick="leaveRoom()">Exit</button>
+<!-- APP -->
+<div id="app" class="hidden">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div style="display:flex;gap:10px;align-items:center">
+      <div id="userAvatar" class="avatar">🙂</div>
+      <div>
+        <div id="userDisplay">User</div>
+        <div style="font-size:12px">💎 <span id="userDiamonds">0</span></div>
+      </div>
+    </div>
+    <div>
+      <span class="badge" id="roomNameDisplay">ROOM</span>
+      <button onclick="leaveRoom()">Exit</button>
+    </div>
   </div>
 
-  <h3>Room: <span id="roomNameDisplay"></span></h3>
+  <!-- MAIN -->
+  <div class="main">
 
-  <h4>Users (click to send diamonds)</h4>
-  <ul id="usersUL"></ul>
+    <!-- USERS -->
+    <div class="panel">
+      <h4>👥 Users</h4>
+      <div id="usersUL"></div>
+      <p style="font-size:12px;opacity:.6">Tap user to send diamonds</p>
+    </div>
 
-  <h4>Chat</h4>
-  <div id="chatBox"></div>
-  <input id="chatInput" placeholder="Type message">
-  <button onclick="sendMessage()">Send</button>
+    <!-- CHAT -->
+    <div class="panel">
+      <h4>💬 Room Chat</h4>
+      <div id="chatBox" class="chat"></div>
+      <div class="chat-input">
+        <input id="chatInput" placeholder="Type message">
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
 
-  <h4>Gifts</h4>
-  <button onclick="sendGift('🌹',10)">🌹 10</button>
-  <button onclick="sendGift('👑',100)">👑 100</button>
+    <!-- GIFTS / ACTIONS -->
+    <div class="panel">
+      <h4>🎁 Gifts</h4>
+      <div>
+        <span class="gift" onclick="sendGift('🌹',10)">🌹</span>
+        <span class="gift" onclick="sendGift('🔥',20)">🔥</span>
+        <span class="gift" onclick="sendGift('💎',50)">💎</span>
+        <span class="gift" onclick="sendGift('👑',100)">👑</span>
+      </div>
+
+      <hr style="opacity:.2">
+
+      <h4>⚙️ Actions</h4>
+      <button onclick="rewardMe()">Daily Reward</button>
+      <button onclick="clearChat()">Clear Chat</button>
+
+      <hr style="opacity:.2">
+
+      <h4>👤 Profile</h4>
+      <p>Username: <span id="profileName"></span></p>
+      <p>Diamonds: 💎 <span id="profileDiamonds"></span></p>
+    </div>
+
+  </div>
 </div>
 
 <script src="app.js"></script>
