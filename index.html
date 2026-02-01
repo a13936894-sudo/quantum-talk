@@ -1,55 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quantum Talk Ultra-Pro 🎙️</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Quantum Talk Ultra</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<h2>Quantum Talk Ultra-Pro 🎙️</h2>
+<div class="app">
 
-<div id="login">
-  <input id="username" placeholder="Enter your username">
-  <input id="avatar" placeholder="Choose avatar (emoji)">
-  <input id="room" placeholder="Enter Room Code">
-  <input id="roomPass" placeholder="Room Password (optional)">
-  <button onclick="joinRoom()">Join Room</button>
-</div>
+  <!-- LOGIN -->
+  <div id="loginBox" class="card">
+    <h2>Quantum Talk</h2>
+    <input id="usernameInput" placeholder="Enter username">
+    <button onclick="login()">Enter</button>
+  </div>
 
-<div id="controls" style="display:none;">
-  <h3>Room: <span id="roomNameDisplay"></span></h3>
+  <!-- MAIN -->
+  <div id="mainUI" class="hidden">
 
-  <div id="dashboard">
-    <div id="userInfo">
-      Welcome, <span id="userDisplay"></span> <span id="userAvatar"></span> | 💎 <span id="userDiamonds"></span>
-      <button onclick="toggleMute()">Mute/Unmute 🎙️</button>
-      <button onclick="leaveRoom()">Leave Room ❌</button>
+    <!-- PROFILE BAR -->
+    <div class="topbar">
+      <img id="avatarImg" class="avatar">
+      <span id="usernameText"></span>
+      <span>💎 <span id="diamondText"></span></span>
     </div>
 
-    <div id="usersList">
-      <h4>Users in Room</h4>
-      <ul id="usersUL"></ul>
+    <!-- ROOM -->
+    <div class="card">
+      <input id="roomCode" placeholder="Room Code">
+      <input id="roomPass" placeholder="Password">
+      <button onclick="createRoom()">Create / Join Room</button>
     </div>
 
-    <div id="chatPanel">
-      <h4>Chat 💬</h4>
-      <div id="chatBox"></div>
+    <!-- MIC SEATS -->
+    <div class="card">
+      <h3>🎤 Mic Seats</h3>
+      <div class="mic-grid">
+        <button onclick="takeMic(1)">1</button>
+        <button onclick="takeMic(2)">2</button>
+        <button onclick="takeMic(3)">3</button>
+      </div>
+    </div>
+
+    <!-- CHAT -->
+    <div class="card">
+      <div id="chatBox" class="chat"></div>
       <input id="chatInput" placeholder="Type message">
       <button onclick="sendMessage()">Send</button>
     </div>
-  </div>
 
-  <h3>Send Gift 🎁</h3>
-  <button onclick="sendGift('🌹',10)">Rose (10💎)</button>
-  <button onclick="sendGift('👑',100)">Crown (100💎)</button>
+    <!-- GIFTS -->
+    <div class="card">
+      <h3>🎁 Gifts</h3>
+      <button onclick="sendGift('🌹',5)">Rose (5)</button>
+      <button onclick="sendGift('👑',50)">Crown (50)</button>
+      <button onclick="sendGift('🚗',100)">Car (100)</button>
+    </div>
+
+  </div>
 </div>
 
-<div id="log"></div>
-
-<script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
-
