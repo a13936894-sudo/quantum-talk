@@ -1,64 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Quantum Talk Ultra</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Quantum Talk</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="app">
+<h2>💎 Quantum Talk</h2>
 
-  <!-- LOGIN -->
-  <div id="loginBox" class="card">
-    <h2>Quantum Talk</h2>
-    <input id="usernameInput" placeholder="Enter username">
-    <button onclick="login()">Enter</button>
+<div id="login">
+  <input id="username" placeholder="Username">
+  <input id="avatar" placeholder="Avatar (🙂👑🔥)">
+  <input id="room" placeholder="Room Code">
+  <input id="roomPass" placeholder="Room Password (optional)">
+  <button onclick="joinRoom()">Create / Join Room</button>
+</div>
+
+<div id="app" style="display:none;">
+  <div class="top">
+    <span id="userAvatar"></span>
+    <b id="userDisplay"></b>
+    💎 <span id="userDiamonds"></span>
+    <button onclick="leaveRoom()">Exit</button>
   </div>
 
-  <!-- MAIN -->
-  <div id="mainUI" class="hidden">
+  <h3>Room: <span id="roomNameDisplay"></span></h3>
 
-    <!-- PROFILE BAR -->
-    <div class="topbar">
-      <img id="avatarImg" class="avatar">
-      <span id="usernameText"></span>
-      <span>💎 <span id="diamondText"></span></span>
-    </div>
+  <h4>Users (click to send diamonds)</h4>
+  <ul id="usersUL"></ul>
 
-    <!-- ROOM -->
-    <div class="card">
-      <input id="roomCode" placeholder="Room Code">
-      <input id="roomPass" placeholder="Password">
-      <button onclick="createRoom()">Create / Join Room</button>
-    </div>
+  <h4>Chat</h4>
+  <div id="chatBox"></div>
+  <input id="chatInput" placeholder="Type message">
+  <button onclick="sendMessage()">Send</button>
 
-    <!-- MIC SEATS -->
-    <div class="card">
-      <h3>🎤 Mic Seats</h3>
-      <div class="mic-grid">
-        <button onclick="takeMic(1)">1</button>
-        <button onclick="takeMic(2)">2</button>
-        <button onclick="takeMic(3)">3</button>
-      </div>
-    </div>
-
-    <!-- CHAT -->
-    <div class="card">
-      <div id="chatBox" class="chat"></div>
-      <input id="chatInput" placeholder="Type message">
-      <button onclick="sendMessage()">Send</button>
-    </div>
-
-    <!-- GIFTS -->
-    <div class="card">
-      <h3>🎁 Gifts</h3>
-      <button onclick="sendGift('🌹',5)">Rose (5)</button>
-      <button onclick="sendGift('👑',50)">Crown (50)</button>
-      <button onclick="sendGift('🚗',100)">Car (100)</button>
-    </div>
-
-  </div>
+  <h4>Gifts</h4>
+  <button onclick="sendGift('🌹',10)">🌹 10</button>
+  <button onclick="sendGift('👑',100)">👑 100</button>
 </div>
 
 <script src="app.js"></script>
